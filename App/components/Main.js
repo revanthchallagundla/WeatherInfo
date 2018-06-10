@@ -25,15 +25,16 @@ class Main extends React.Component{
     return(    
     <form className="column">
     <label className="header" htmlFor="username" >Enter a City and State </label>
-    <input id="city" type="text" value={this.state.city} onChange={this.handleChange} autoComplete="off"/>
-        <Link 
+    <input id="city" type="text" value={this.state.city} onChange={this.handleChange} autoComplete="off"/>  
+    {city && 
+     <Link 
              className="button"
              to={{
                 pathname:'/forecast',
                 search:'?city=' + city 
-             }}>
+             }} >
              Submit
-             </Link>   
+            </Link> }
     </form>
     )    
     }

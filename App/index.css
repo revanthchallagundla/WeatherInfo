@@ -29,3 +29,32 @@ flex-direction:column;
     font-weight: 100;
 }
 
+
+.button {
+    color: #e6e6e6;
+    background: green;
+    border: none;
+    font-size: 12px;
+    border-radius: 3px;
+    width: 200px;
+    text-align: center;
+    display: block;
+    padding: 7px 0;
+    margin: 10px auto;
+    text-decoration: none;
+
+}
+
+.button:hover:enabled {
+    background: linear-gradient(green,green);
+    color: #fff;
+    text-decoration: underline;
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+.Disabled{
+    cursor: default;
+}

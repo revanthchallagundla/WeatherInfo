@@ -20,12 +20,8 @@
   "homepage": "https://github.com/revanthchallagundla/WeatherInfo#readme",
   "dependencies": {
     "bootstrap": "^4.1.1",
-    "query-strings": "0.0.1",
     "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-router-dom": "^4.3.1",
-    "react-svg": "^4.0.13",
-    "react-svg-loader": "^2.1.0"
+    "react-dom": "^16.4.0"
   },
   "babel": {
     "presets": [
@@ -33,6 +29,7 @@
       "react"
     ]
   },
+  
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
