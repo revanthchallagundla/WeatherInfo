@@ -11,11 +11,9 @@ class App extends React.Component{
         return(
             <Router>
             <div className="container">
-            
              <Route exact path="/" component={Main}/>
-     
              <Route path="/forecast" component={Forecast}/>
-           
+
              </div>
             </Router>
             
