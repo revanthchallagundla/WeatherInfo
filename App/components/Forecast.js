@@ -2,7 +2,7 @@ var React = require("react");
 var ReactDom = require("react-dom");
 var queryString = require("query-string");
 var Api = require("../Utils/Api");
-
+var Link = require("react-router-dom").Link;
 
 function WeatherGrid(props){
     return( 
@@ -23,7 +23,8 @@ class Foreast extends React.Component{
            date2:"",
            date3:"",
            date4:"",
-           date5:""
+           date5:"",
+           error:""
         }
 
     }
@@ -33,8 +34,16 @@ class Foreast extends React.Component{
         console.log(city.city)
         Api.fetchweather(city.city)
             .then(function(resp){
+                console.log(resp);
+              if(resp === null){
+               return this.setState(function(){
+                     return{
+                       error:"Sorry City Information Not found"
+                     }
+                 }) 
+              }
+
             this.setState(function(){
-                console.log(resp.list)
                 return {
                     date1:resp.list[0],
                     date2:resp.list[1],
@@ -55,13 +64,24 @@ class Foreast extends React.Component{
         var date3 = this.state.date3;
         var date4 = this.state.date4;
         var date5 = this.state.date5;
-       
+        var error = this.state.error;
+
         //valid time
         var finaldate1 = new Date(date1.dt*1000);
         console.log(new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(date1.dt));
  
         console.log(finaldate1);
         console.log(city)
+
+        if (error) {
+            return (
+              <div>
+                <p>{error}</p>
+                <Link to='/'>Reset</Link>
+              </div>
+            )
+          }
+      
       return(
           <div>
          <h1 className="forecast-header"> {city.city} </h1>

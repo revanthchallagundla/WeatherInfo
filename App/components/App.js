@@ -5,16 +5,22 @@ var ReactRouter = require("react-router-dom");
 var Router = ReactRouter.BrowserRouter;
 var Route = ReactRouter.Route;
 var Forecast = require("./Forecast");
+var Switch = require("react-router-dom").Switch;
 
 class App extends React.Component{
     render(){
         return(
             <Router>
-            <div className="container">
-             <Route exact path="/" component={Main}/>
-             <Route path="/forecast" component={Forecast}/>
-
+                 <div className="container">
+             <Switch>     
+            <Route exact path="/" component={Main}/>
+            <Route exact path="/forecast" component={Forecast}/>
+            <Route render ={function(){
+                    return <p> Not valid Url </p>
+            }}/>
+             </Switch>
              </div>
+            
             </Router>
             
         )
