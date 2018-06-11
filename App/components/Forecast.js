@@ -3,6 +3,7 @@ var ReactDom = require("react-dom");
 var queryString = require("query-string");
 var Api = require("../Utils/Api");
 var Link = require("react-router-dom").Link;
+var Sorry = require("./Sorry");
 
 function WeatherGrid(props){
     return( 
@@ -76,7 +77,7 @@ class Foreast extends React.Component{
         if (error) {
             return (
               <div>
-                <p>{error}</p>
+               <Sorry error={error}/>
                 <Link to='/'>Reset</Link>
               </div>
             )

@@ -9,13 +9,12 @@ class Main extends React.Component{
         }
     
         this.handleChange = this.handleChange.bind(this);
-        //this.handleSubmit = this.handleSubmit.bind(this);
     }
     
     handleChange(event){
         var value = event.target.value;
     this.setState(function(){
-       return{city:value}
+       return {city:value}
     })
     
     }
