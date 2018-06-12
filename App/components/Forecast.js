@@ -82,16 +82,16 @@ class Foreast extends React.Component{
           <div>
          <h1 className="forecast-header"> {city.city} </h1>
          <div className="forecast-container">
-         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date1.dt*1000)).toDateString()} city={city.city} > 
+         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date1.dt*1000)).toDateString()} city={city.city} date1={date1} > 
         
          </Weathergrid>
-         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date2.dt*1000)).toDateString()} city={city.city} > 
+         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date2.dt*1000)).toDateString()} city={city.city} date2={date2}> 
          </Weathergrid>
-         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date3.dt*1000)).toDateString()} city={city.city} > 
+         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date3.dt*1000)).toDateString()} city={city.city} date3={date3}> 
          </Weathergrid>
-         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date4.dt*1000)).toDateString()} city={city.city} > 
+         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date4.dt*1000)).toDateString()} city={city.city} date4={date4} > 
          </Weathergrid>
-         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date5.dt*1000)).toDateString()} city={city.city} > 
+         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date5.dt*1000)).toDateString()} city={city.city} date5={date5}> 
          </Weathergrid>
            </div>
           </div>

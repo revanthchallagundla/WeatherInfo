@@ -2,19 +2,16 @@ var React = require("react");
 var ReactDom = require("react-dom");
 var Link = require("react-router-dom").Link;
 
-class Details extends React.Component{
-    render(){
+
+function Details(props){
+    console.log(props.data1)
         return(
+          
             <div>
-           <div className="dayContainer">
-           <Link to={{pathname:"/details/" + this.props.city}} >
-           <img className="weather" src="/app/images/10d.svg" alt="Weather"/>
-           </Link>
-           <h2 className="subheader">{this.props.date}</h2>
-           </div>  
-           </div>
+                {props.data1}
+                </div>
         )
-    }
+    
 }
 
 
