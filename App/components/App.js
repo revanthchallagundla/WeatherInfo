@@ -7,6 +7,7 @@ var Route = ReactRouter.Route;
 var Forecast = require("./Forecast");
 var Switch = require("react-router-dom").Switch;
 var Sorry = require("./Sorry");
+var Details = require("./Details");
 
 class App extends React.Component{
     render(){
@@ -17,6 +18,7 @@ class App extends React.Component{
             <Route exact path="/" component={Main}/>
             <Route exact path="/forecast" component={Forecast}/>
             <Route exact path="/sorry" component={Sorry}/>
+            <Route  path="/details" component={Details}/>
             <Route render ={function(){
                     return <p> Not valid Url </p>
             }}/>

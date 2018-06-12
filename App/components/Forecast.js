@@ -4,17 +4,8 @@ var queryString = require("query-string");
 var Api = require("../Utils/Api");
 var Link = require("react-router-dom").Link;
 var Sorry = require("./Sorry");
-
-function WeatherGrid(props){
-    return( 
-            <div className="dayContainer">
-            <img className="weather" src="/app/images/10d.svg" alt="Weather"/>
-            <h2 className="subheader">{props.date}</h2>
-            </div>   
-    )
-
-}
-
+var Weathergrid = require("./Weathergrid");
+var Details = require("./Details");
 
 class Foreast extends React.Component{
     constructor(props){
@@ -58,6 +49,10 @@ class Foreast extends React.Component{
     }
     
 
+    componentWillUnmount(){
+        window.clearImmediate;
+    }
+
     render(){
         var city = queryString.parse(this.props.location.search);
         var date1 = this.state.date1;
@@ -87,11 +82,17 @@ class Foreast extends React.Component{
           <div>
          <h1 className="forecast-header"> {city.city} </h1>
          <div className="forecast-container">
-           <WeatherGrid  date={(new Date(date1.dt*1000)).toDateString()}/>
-           <WeatherGrid  date={(new Date(date2.dt*1000)).toDateString()}/>
-           <WeatherGrid  date={(new Date(date3.dt*1000)).toDateString()}/>
-           <WeatherGrid  date={(new Date(date4.dt*1000)).toDateString()}/>
-           <WeatherGrid  date={(new Date(date5.dt*1000)).toDateString()}/>
+         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date1.dt*1000)).toDateString()} city={city.city} > 
+        
+         </Weathergrid>
+         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date2.dt*1000)).toDateString()} city={city.city} > 
+         </Weathergrid>
+         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date3.dt*1000)).toDateString()} city={city.city} > 
+         </Weathergrid>
+         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date4.dt*1000)).toDateString()} city={city.city} > 
+         </Weathergrid>
+         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date5.dt*1000)).toDateString()} city={city.city} > 
+         </Weathergrid>
            </div>
           </div>
       )
