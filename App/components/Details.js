@@ -1,15 +1,15 @@
 var React = require("react");
 var ReactDom = require("react-dom");
 var Link = require("react-router-dom").Link;
+var DayItem = require("./DayItem");
 
 
 function Details(props){
-    console.log(props.data1)
+    console.log(props.location.state)
         return(
-          
-            <div>
-                {props.data1}
-                </div>
+               <div>
+                    
+                </div>   
         )
     
 }

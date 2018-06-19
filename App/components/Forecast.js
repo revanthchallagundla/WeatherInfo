@@ -4,19 +4,19 @@ var queryString = require("query-string");
 var Api = require("../Utils/Api");
 var Link = require("react-router-dom").Link;
 var Sorry = require("./Sorry");
-var Weathergrid = require("./Weathergrid");
+var Weathergrid = require("./DayItem");
 var Details = require("./Details");
+var DayItem = require("./DayItem");
 
 class Foreast extends React.Component{
     constructor(props){
         super(props);
         this.state ={
-           date1:"",
-           date2:"",
-           date3:"",
-           date4:"",
-           date5:"",
-           error:""
+         forecastData:[],
+          loading:true,
+          error:"",
+          errorMsg:"",
+          city:""
         }
 
     }
@@ -30,72 +30,51 @@ class Foreast extends React.Component{
               if(resp === null){
                return this.setState(function(){
                      return{
-                       error:"Sorry City Information Not found"
+                       errorMsg:"Sorry City Information Not found",
+                       error:true
                      }
                  }) 
               }
 
             this.setState(function(){
                 return {
-                    date1:resp.list[0],
-                    date2:resp.list[1],
-                    date3:resp.list[2],
-                    date4:resp.list[3],
-                    date5:resp.list[4]
+                    forecastData:resp,
+                    loading:false,
+                    error:false,
+                    city:city.city
                 }
             })
         }.bind(this))
         
     }
+
+    handleClick(list) {
+         var city =  this.state.city
+      console.log("city===" + city)
+        this.props.history.push({
+          pathname: '/details/' + city,
+          state: list,
+        })
+      }
     
 
     componentWillUnmount(){
         window.clearImmediate;
     }
 
-    render(){
-        var city = queryString.parse(this.props.location.search);
-        var date1 = this.state.date1;
-        var date2 = this.state.date2;
-        var date3 = this.state.date3;
-        var date4 = this.state.date4;
-        var date5 = this.state.date5;
-        var error = this.state.error;
-
-        //valid time
-        var finaldate1 = new Date(date1.dt*1000);
-        console.log(new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(date1.dt));
- 
-        console.log(finaldate1);
-        console.log(city)
-
-        if (error) {
-            return (
-              <div>
-               <Sorry error={error}/>
-                <Link to='/'>Reset</Link>
-              </div>
-            )
-          }
-      
-      return(
-          <div>
-         <h1 className="forecast-header"> {city.city} </h1>
-         <div className="forecast-container">
-         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date1.dt*1000)).toDateString()} city={city.city} date1={date1} > 
-        
-         </Weathergrid>
-         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date2.dt*1000)).toDateString()} city={city.city} date2={date2}> 
-         </Weathergrid>
-         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date3.dt*1000)).toDateString()} city={city.city} date3={date3}> 
-         </Weathergrid>
-         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date4.dt*1000)).toDateString()} city={city.city} date4={date4} > 
-         </Weathergrid>
-         <Weathergrid  src="/app/images/10d.svg" date={(new Date(date5.dt*1000)).toDateString()} city={city.city} date5={date5}> 
-         </Weathergrid>
-           </div>
+    render(){       
+       
+      return this.state.loading === true
+      ? <h1 className='forecast-header'> Loading </h1>
+      : <div>
+          <h1 className='forecast-header'>{this.city}</h1>
+          <div className='forecast-container'>
+            {this.state.forecastData.list.map(function (listItem) {
+              return <DayItem onClick={this.handleClick.bind(this, listItem)} key={listItem.dt} date={(new Date(listItem.dt*1000)).toDateString()} day={listItem} />
+            }, this)}
           </div>
-      )
+        </div>
+      
   }
 
 }

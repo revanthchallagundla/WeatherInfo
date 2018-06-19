@@ -22,20 +22,22 @@ class Main extends React.Component{
     render(){
         var city = this.state.city;
     return(    
-       
-    <form className="column">
-    <label className="header" htmlFor="username" >Enter a City and State </label>
-    <input id="city" type="text" value={this.state.city} onChange={this.handleChange} autoComplete="off"/>  
-    {city && 
-     <Link 
-             className="button"
-             to={{
-                pathname:'/forecast',
-                search:'?city=' + city 
-             }} >
-             Submit
-            </Link> }
-    </form>
+        <div className='zipcode-container'
+          style={{flexDirection: this.props.direction}}>
+        <input
+          className='form-control'
+          onChange={this.handleChange}
+          placeholder='St. George, Utah'
+          type='text'
+          value={this.state.zipcode} />
+        <button
+          type='button'
+          style={{margin: 10}}
+          className='btn btn-success'
+          onClick={this.handleSubmitZipcode}>
+            Get Weather
+        </button>
+      </div>
     )    
     }
     
