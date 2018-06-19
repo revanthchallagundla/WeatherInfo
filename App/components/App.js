@@ -15,7 +15,7 @@ class App extends React.Component{
         return(
             <Router>
              <div className='container'>
-          <Route render={function (props) {
+         <Route render={function (props) {
             return (
               <div className='navbar'>
                 <h1>Weather Info</h1>
@@ -30,7 +30,8 @@ class App extends React.Component{
               </div>
             )
           }} />
-                <Switch>
+            <Switch>
+           
             <Route exact path="/" render={function(props){
                 return( <div className='home-container' style={{backgroundImage: "url('App/images/pattern.svg')"}}>
                         <h1 className='header'>Enter a City</h1>
@@ -49,7 +50,7 @@ class App extends React.Component{
             <Route  path="/details" component={Details}/>
           
             <Route render ={function(){
-                    return <p style={{'textAlign':'center'}}> Not valid Url </p>
+                    return <p style={{textAlign:'center'}}> Not valid Url </p>
             }}/>
              </Switch>
              </div>

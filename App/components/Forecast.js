@@ -73,8 +73,8 @@ class Foreast extends React.Component{
 
        if(this.state.error){
         return(
-            <p style={{'textAlign':"center"}}>
-                ERROR PLEASE CHECK THE CITY NAME WHICH IS ENTERED
+            <p style={{textAlign:"center",margin:10,padding:0}}>
+                ERROR PLEASE CHECK THE ENTERED CITY NAME 
             </p>
         )
     }
