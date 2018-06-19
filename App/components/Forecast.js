@@ -8,6 +8,9 @@ var Weathergrid = require("./DayItem");
 var Details = require("./Details");
 var DayItem = require("./DayItem");
 
+
+
+
 class Foreast extends React.Component{
     constructor(props){
         super(props);
@@ -22,9 +25,9 @@ class Foreast extends React.Component{
     }
 
     componentDidMount(){
-        var city = queryString.parse(this.props.location.search);
-        console.log(city.city)
-        Api.fetchweather(city.city)
+        this.city = queryString.parse(this.props.location.search).city;
+        console.log(this.city)
+        Api.fetchweather(this.city)
             .then(function(resp){
                 console.log(resp);
               if(resp === null){
@@ -41,7 +44,7 @@ class Foreast extends React.Component{
                     forecastData:resp,
                     loading:false,
                     error:false,
-                    city:city.city
+                    city:this.city
                 }
             })
         }.bind(this))
@@ -49,25 +52,26 @@ class Foreast extends React.Component{
     }
 
     handleClick(list) {
-         var city =  this.state.city
-      console.log("city===" + city)
+          list.city =  this.city
+      console.log("city===" + this.city)
         this.props.history.push({
-          pathname: '/details/' + city,
+          pathname: '/details/' + this.city,
           state: list,
         })
       }
     
+   
 
     componentWillUnmount(){
         window.clearImmediate;
     }
 
     render(){       
-       
+       var city = this.state.city
       return this.state.loading === true
       ? <h1 className='forecast-header'> Loading </h1>
       : <div>
-          <h1 className='forecast-header'>{this.city}</h1>
+          <h1 className='forecast-header'>{city}</h1>
           <div className='forecast-container'>
             {this.state.forecastData.list.map(function (listItem) {
               return <DayItem onClick={this.handleClick.bind(this, listItem)} key={listItem.dt} date={(new Date(listItem.dt*1000)).toDateString()} day={listItem} />
