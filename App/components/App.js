@@ -49,7 +49,7 @@ class App extends React.Component{
             <Route  path="/details" component={Details}/>
           
             <Route render ={function(){
-                    return <p> Not valid Url </p>
+                    return <p style={{'textAlign':'center'}}> Not valid Url </p>
             }}/>
              </Switch>
              </div>
