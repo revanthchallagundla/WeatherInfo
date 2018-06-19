@@ -66,8 +66,19 @@ class Foreast extends React.Component{
         window.clearImmediate;
     }
 
+
+   
     render(){       
        var city = this.state.city
+
+       if(this.state.error){
+        return(
+            <p style={{'textAlign':"center"}}>
+                ERROR PLEASE CHECK THE CITY NAME WHICH IS ENTERED
+            </p>
+        )
+    }
+
       return this.state.loading === true
       ? <h1 className='forecast-header'> Loading </h1>
       : <div>
