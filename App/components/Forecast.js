@@ -60,7 +60,34 @@ class Foreast extends React.Component{
         })
       }
     
-   
+      componentWillUpdate(prevProps, prevState) {
+        // only update chart if the data has changed
+        this.city = queryString.parse(this.props.location.search).city
+        console.log(prevProps)
+     
+            Api.fetchweather(this.city)
+            .then(function(resp){
+                console.log(resp);
+              if(resp === null){
+               return this.setState(function(){
+                     return{
+                       errorMsg:"Sorry City Information Not found",
+                       error:true
+                     }
+                 }) 
+              }
+
+            this.setState(function(){
+                return {
+                    forecastData:resp,
+                    loading:false,
+                    error:false,
+                    city:this.city
+                }
+            })
+        }.bind(this))
+        
+      }
 
     componentWillUnmount(){
         window.clearImmediate;
